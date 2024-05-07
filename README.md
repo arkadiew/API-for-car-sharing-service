@@ -10,3 +10,12 @@ Arkadi Perevoztsikov , Vlad Kuznetsov
 - Бронирование и управление бронированиями автомобилей.
 - Автоматическое начисление платы и управление платежами.
 
+# Выбранные технологии
+- Node.js
+- swaggerUi
+- Sequelize
+- express
+- bcrypt
+  
+
+
