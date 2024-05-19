@@ -1,0 +1,175 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Car Sharing Service API",
+      "version": "1.0.0",
+      "description": "API documentation for Car Sharing Service"
+    },
+    "basePath": "/api",
+    "schemes": ["http"],
+    "paths": {
+      "/auth/register": {
+        "post": {
+          "summary": "Register a new user",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user",
+              "description": "User to register",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "User registered successfully"
+            }
+          }
+        }
+      },
+      "/auth/login": {
+        "post": {
+          "summary": "Login a user",
+          "consumes": ["application/json"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "user",
+              "description": "User to login",
+              "schema": {
+                "$ref": "#/definitions/Login"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Login successful"
+            }
+          }
+        }
+      },
+      "/cars/available": {
+        "get": {
+          "summary": "Get available cars",
+          "responses": {
+            "200": {
+              "description": "A list of available cars"
+            }
+          }
+        }
+      },
+      "/bookings": {
+        "post": {
+          "summary": "Create a new booking",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "booking",
+              "description": "Booking to create",
+              "schema": {
+                "$ref": "#/definitions/Booking"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Booking created successfully"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get user's bookings",
+          "responses": {
+            "200": {
+              "description": "A list of user's bookings"
+            }
+          }
+        }
+      },
+      "/payments": {
+        "post": {
+          "summary": "Create a new payment",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "payment",
+              "description": "Payment to create",
+              "schema": {
+                "$ref": "#/definitions/Payment"
+              }
+            }
+          ],
+          "responses": {
+            "201": {
+              "description": "Payment created successfully"
+            }
+          }
+        },
+        "get": {
+          "summary": "Get user's payments",
+          "responses": {
+            "200": {
+              "description": "A list of user's payments"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Login": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "carID": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "Payment": {
+        "type": "object",
+        "properties": {
+          "bookingID": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+  

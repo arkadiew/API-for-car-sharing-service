@@ -1,8 +1,11 @@
 const express = require('express');
-const { register, login } = require('../controllers/authController');
+const authController = require('../controllers/authController');
 const router = express.Router();
+const verifySignUp = require('../middlewares/verifySignUp');
+router.post('/register',[
+    verifySignUp.checkDuplicateUsernameOrEmail,
 
-router.post('/register', register);
-router.post('/login', login);
+  ], authController.register);
+router.post('/login',  authController.login);
 
 module.exports = router;

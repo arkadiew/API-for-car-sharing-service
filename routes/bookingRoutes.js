@@ -1,7 +1,10 @@
 const express = require('express');
-const { createBooking } = require('../controllers/bookingController.js');
+const bookingController = require('../controllers/bookingController.js');
+const authJwt = require('../middlewares/authJwt');
 const router = express.Router();
 
-router.post('/', createBooking);
+router.post('/', [authJwt.verifyToken], bookingController.create);
+router.delete('/:id', [authJwt.verifyToken], bookingController.cancel);
+
 
 module.exports = router;

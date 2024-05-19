@@ -15,13 +15,16 @@ const Car = sequelize.define('Car', {
         type: DataTypes.FLOAT,
         allowNull: false
     },
-    latitude: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-    },
     longitude: {
         type: DataTypes.FLOAT,
         allowNull: false
+    }, radius: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    available: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
     }
 });
 
