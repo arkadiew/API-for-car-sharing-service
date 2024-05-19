@@ -1,7 +1,9 @@
 const express = require('express');
-const { createPaymentIntent } = require('../controllers/paymentController');
+const paymentController = require('../controllers/paymentController');
+const authJwt = require('../middlewares/authJwt');
 const router = express.Router();
 
-router.post('/create-payment-intent', createPaymentIntent);
+router.post('/', [authJwt.verifyToken], paymentController.createPayment);
+
 
 module.exports = router;

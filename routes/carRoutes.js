@@ -1,7 +1,7 @@
 const express = require('express');
-const { getCars } = require('../controllers/carController');
+const carController = require('../controllers/carController');
 const router = express.Router();
-
-router.get('/', getCars);
+const authJwt = require('../middlewares/authJwt');
+router.get('/available', [authJwt.verifyToken], carController.getAvailableCars);
 
 module.exports = router;

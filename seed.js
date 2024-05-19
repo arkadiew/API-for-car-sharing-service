@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const sequelize = require('./config/database');
 const User = require('./models/User');
-const Car = require('./models/Car');
+const Car = require('./models/car');
 const Booking = require('./models/booking');
 const Payment = require('./models/payment');
 
@@ -20,8 +20,8 @@ const seedDatabase = async () => {
     ];
 
     const bookings = [
-        { userId: 1, carId: 1, startDate: new Date('2024-06-01'), endDate: new Date('2024-06-10'), totalPrice: 300 },
-        { userId: 2, carId: 2, startDate: new Date('2024-07-15'), endDate: new Date('2024-07-20'), totalPrice: 175 },
+        { userId: 1, carId: 1, startDate: new Date('2024-06-01'), endDate: new Date('2024-06-10') },
+        { userId: 2, carId: 2, startDate: new Date('2024-07-15'), endDate: new Date('2024-07-20') },
     ];
 
     const payments = [
