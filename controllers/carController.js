@@ -1,4 +1,5 @@
 const Car = require('../models/car');
+
 const { Op } = require('sequelize');
 
 
@@ -32,7 +33,7 @@ exports.findAll = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+
 
 exports.create = async (req, res) => {
     try {

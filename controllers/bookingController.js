@@ -1,4 +1,5 @@
 
+
 const Booking = require('../models/booking');
 const Car = require('../models/car');
 const User = require('../models/User');
@@ -38,5 +39,6 @@ exports.cancel = async (req, res) => {
         res.status(200).json(booking);
     } catch (error) {
         res.status(400).json({ message: error.message });
+
     }
 };
