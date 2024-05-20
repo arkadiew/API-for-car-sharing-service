@@ -9,4 +9,5 @@ router.put('/:id',[authJwt.verifyToken], carController.update);
 router.delete('/:id',[authJwt.verifyToken], carController.delete);
 router.get('/by-ip/:ip', [authJwt.verifyToken], carController.findAvailableByLocation);
 
+
 module.exports = router;

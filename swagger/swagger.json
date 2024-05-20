@@ -222,7 +222,7 @@
         }
       }
     },
-    "/api/cars/by-ip/{ip}": {
+    "/by-ip/{ip}": {
       "get": {
         "tags": ["Car"],
         "summary": "Find available cars and city by IP address",
