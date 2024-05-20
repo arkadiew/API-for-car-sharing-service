@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const sequelize = require('./config/database');
 const User = require('./models/User');
-const Car = require('./models/Car');
+const Car = require('./models/car');
 const Booking = require('./models/booking');
 const Payment = require('./models/payment');
 
@@ -14,19 +14,20 @@ const seedDatabase = async () => {
     ];
 
     const cars = [
-        { model: 'Toyota Corolla', pricePerDay: 30, latitude: 40.7128, longitude: -74.0060 },
-        { model: 'Honda Civic', pricePerDay: 35, latitude: 34.0522, longitude: -118.2437 },
-        { model: 'Ford Focus', pricePerDay: 25, latitude: 37.7749, longitude: -122.4194 },
+
+        { model: 'Toyota Corolla', pricePerDay: 30,latitude: 40.7128, longitude: -74.0060 ,radius:43, available: true},
+        { model: 'Honda Civic', pricePerDay: 35,latitude: 46.7128, longitude: -78.0060 ,radius:65,available: true },
+        { model: 'Ford Focus', pricePerDay: 25,latitude: 42.7128, longitude: -75.0060 ,radius:75,available: true },
     ];
 
     const bookings = [
-        { userId: 1, carId: 1, startDate: new Date('2024-06-01'), endDate: new Date('2024-06-10'), totalPrice: 300 },
-        { userId: 2, carId: 2, startDate: new Date('2024-07-15'), endDate: new Date('2024-07-20'), totalPrice: 175 },
+        { userId: 1, carId: 1, startDate: new Date('2024-06-01'), endDate: new Date('2024-06-10')},
+        { userId: 2, carId: 2, startDate: new Date('2024-07-15'), endDate: new Date('2024-07-20')},
     ];
 
     const payments = [
-        { bookingId: 1, amount: 300, status: 'succeeded', paymentIntentId: 'pi_1' },
-        { bookingId: 2, amount: 175, status: 'succeeded', paymentIntentId: 'pi_2' },
+        { bookingId: 1, amount: 300 , transactionId:"s1" },
+        { bookingId: 2, amount: 175 , transactionId:"s2" },
     ];
 
     try {
