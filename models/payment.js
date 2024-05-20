@@ -13,7 +13,8 @@ const Payment = sequelize.define('Payment', {
         references: {
             model: Booking,
             key: 'id'
-        }
+        },
+        allowNull: false
     },
     amount: {
         type: DataTypes.FLOAT,
@@ -21,11 +22,12 @@ const Payment = sequelize.define('Payment', {
     },
     status: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'pending'
     },
-    paymentIntentId: {
+    transactionId: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     }
 });
 

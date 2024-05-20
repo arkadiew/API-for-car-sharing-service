@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const User = require('./User');
-const Car = require('./Car');
+const Car = require('./car');
 
 const Booking = sequelize.define('Booking', {
     id: {
@@ -9,19 +9,21 @@ const Booking = sequelize.define('Booking', {
         autoIncrement: true,
         primaryKey: true
     },
-    userId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'id'
-        }
-    },
     carId: {
         type: DataTypes.INTEGER,
         references: {
             model: Car,
             key: 'id'
-        }
+        },
+        allowNull: false
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: 'id'
+        },
+        allowNull: false
     },
     startDate: {
         type: DataTypes.DATE,
@@ -31,11 +33,12 @@ const Booking = sequelize.define('Booking', {
         type: DataTypes.DATE,
         allowNull: false
     },
-    totalPrice: {
-        type: DataTypes.FLOAT,
-        allowNull: false
+    status: {
+        type: DataTypes.STRING,
+        defaultValue: 'active'
     }
 });
+
 
 User.hasMany(Booking, { foreignKey: 'userId' });
 Car.hasMany(Booking, { foreignKey: 'carId' });
