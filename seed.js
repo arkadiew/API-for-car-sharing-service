@@ -21,8 +21,10 @@ const seedDatabase = async () => {
     ];
 
     const bookings = [
+
         { userId: 1, carId: 1, startDate: new Date('2024-06-01'), endDate: new Date('2024-06-10')},
         { userId: 2, carId: 2, startDate: new Date('2024-07-15'), endDate: new Date('2024-07-20')},
+
     ];
 
     const payments = [

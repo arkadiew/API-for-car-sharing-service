@@ -1,4 +1,5 @@
 {
+
   "openapi": "3.0.0",
   "info": {
     "title": "Car Booking API",
@@ -133,6 +134,7 @@
                   }
                 }
               }
+
             }
           }
         }
@@ -324,10 +326,12 @@
                 }
               }
             }
+
           }
         }
       }
     },
+
     "/api/payments/process/{paymentId}": {
       "put": {
         "summary": "Process a payment",
@@ -401,6 +405,7 @@
           "password": {
             "type": "string",
             "example": "password123"
+
           }
         }
       },
@@ -408,18 +413,21 @@
         "type": "object",
         "properties": {
           "email": {
+
             "type": "string",
             "example": "john.doe@example.com"
           },
           "password": {
             "type": "string",
             "example": "password123"
+
           }
         }
       },
       "Booking": {
         "type": "object",
         "properties": {
+
           "id": {
             "type": "integer",
             "example": 1
@@ -474,12 +482,14 @@
           "available": {
             "type": "boolean",
             "example": true
+
           }
         }
       },
       "Payment": {
         "type": "object",
         "properties": {
+
           "id": {
             "type": "integer",
             "example": 1
@@ -512,3 +522,4 @@
     }
   }
 }
+

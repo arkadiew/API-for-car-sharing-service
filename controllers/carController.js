@@ -1,4 +1,5 @@
 const Car = require('../models/car');
+
 const { Op } = require('sequelize');
 
 
@@ -14,8 +15,9 @@ exports.findAvailableByLocation = async (req, res) => {
                 available: true,
                 [Op.and]: [
                     Car.sequelize.literal(
+
                         `ST_Distance_Sphere(POINT(longitude, latitude), POINT(${longitude})) <= ${radius}`
-                    )
+      )
                 ]
             }
         });
@@ -31,6 +33,7 @@ exports.findAll = async (req, res) => {
         res.status(200).json(cars);
     } catch (error) {
         res.status(500).json({ message: error.message });
+
     }
 };
 
