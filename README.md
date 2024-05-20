@@ -20,5 +20,4 @@ Arkadi Perevoztsikov , Vlad Kuznetsov
 # Схема базы данных (ER диаграмма)
   
   
-
-![image](https://github.com/arkadiew/API-for-car-sharing-service/assets/113170277/1fb6c55d-e7d0-4c63-81e4-6439fa159f07)
+![image](https://github.com/arkadiew/API-for-car-sharing-service/assets/113170277/36bf1d11-23a4-493a-b518-d596e13ed69a)
