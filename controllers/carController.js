@@ -43,12 +43,17 @@ exports.create = async (req, res) => {
 exports.update = async (req, res) => {
     const { id } = req.params;
     try {
-        const car = await Car.findByPk(id, req.body, { new: true });
+        const car = await Car.findByPk(id);
+        if (!car) {
+            return res.status(404).json({ error: 'Location not found' });
+        }
+        await car.update(req.body);
         res.status(200).json(car);
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ error: error.message });
     }
 };
+
 
 exports.delete = async (req, res) => {
     const { id } = req.params;
