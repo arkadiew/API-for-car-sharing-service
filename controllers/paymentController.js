@@ -45,7 +45,7 @@ exports.processPayment = async (req, res) => {
         }
 
 
-        payment.status = 'completed';
+        payment.status = 'paid';
         payment.transactionId = transactionId;
         await payment.save();
 
