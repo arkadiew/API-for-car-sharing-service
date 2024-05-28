@@ -1,48 +1,15 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const User = require('./User');
-const Car = require('./car');
 
 const Booking = sequelize.define('Booking', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    carId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Car,
-            key: 'id'
-        },
-        allowNull: false
-    },
-    userId: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: User,
-            key: 'id'
-        },
-        allowNull: false
-    },
-    startDate: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    endDate: {
-        type: DataTypes.DATE,
-        allowNull: false
-    },
-    status: {
-        type: DataTypes.STRING,
-        defaultValue: 'active'
-    }
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    userId: { type: DataTypes.INTEGER, allowNull: false },
+    carId: { type: DataTypes.INTEGER, allowNull: false },
+    startDate: DataTypes.DATE,
+    endDate: DataTypes.DATE,
+    status: DataTypes.STRING,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
 });
-
-
-User.hasMany(Booking, { foreignKey: 'userId' });
-Car.hasMany(Booking, { foreignKey: 'carId' });
-Booking.belongsTo(User, { foreignKey: 'userId' });
-Booking.belongsTo(Car, { foreignKey: 'carId' });
 
 module.exports = Booking;

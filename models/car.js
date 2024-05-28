@@ -1,35 +1,18 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Location = require('./location');
 
 const Car = sequelize.define('Car', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    pricePerDay: {
-        type: DataTypes.FLOAT,
-        allowNull: false
-    },
-    model: {
-        type: DataTypes.STRING(50),
-        allowNull: false
-    },
-    year: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
-    location_id: {
-        type: DataTypes.INTEGER,
-        references: {
-            model: Location,
-            key: 'id'
-        }
-    }
-}, {
-    tableName: 'cars',
-    timestamps: false
+    car_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    make: DataTypes.STRING,
+    model: DataTypes.STRING,
+    year: DataTypes.INTEGER,
+    pricePerDay: DataTypes.FLOAT,
+    color: DataTypes.STRING,
+    mileage: DataTypes.INTEGER,
+    transmission_type: DataTypes.STRING,
+    fuel_type: DataTypes.STRING,
+    number_of_seats: DataTypes.INTEGER,
+    license_plate: DataTypes.STRING,
 });
 
 module.exports = Car;
