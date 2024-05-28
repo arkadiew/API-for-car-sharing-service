@@ -18,6 +18,8 @@ Arkadi Perevoztsikov , Vlad Kuznetsov
 - bcrypt
   
 # Схема базы данных (ER диаграмма)
-  ![image](https://github.com/arkadiew/API-for-car-sharing-service/assets/113170277/24b0e948-4d8b-415a-86d9-1010737fd8d0)
+![image](https://github.com/arkadiew/API-for-car-sharing-service/assets/113170277/76e245a1-8aea-4bf4-9268-68886889ea80)
+
+
 
 
