@@ -222,77 +222,40 @@
         }
       }
     },
-    "/api/cars/locations/{longitude}/{latitude}/cars": {
+    "/by-ip/{ip}": {
       "get": {
-        "summary": "Find available cars by location",
         "tags": ["Car"],
+        "summary": "Find available cars and city by IP address",
+        "description": "Returns a list of available cars and the city for the given IP address",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "path",
+            "description": "IP address to look up",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "security": [
           {
             "bearerAuth": []
           }
         ],
-        "description": "Retrieve available cars based on longitude and latitude",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "longitude",
-            "required": true,
-            "schema": {
-              "type": "number"
-            },
-            "description": "Longitude of the location"
-          },
-          {
-            "in": "path",
-            "name": "latitude",
-            "required": true,
-            "schema": {
-              "type": "number"
-            },
-            "description": "Latitude of the location"
-          }
-        ],
         "responses": {
           "200": {
-            "description": "A list of available cars",
+            "description": "List of available cars",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "longitude": {
-                      "type": "number"
-                    },
-                    "latitude": {
-                      "type": "number"
-                    },
-                    "cars": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "id": {
-                            "type": "integer"
-                          },
-                          "model": {
-                            "type": "string"
-                          },
-                          "brand": {
-                            "type": "string"
-                          }
-                        }
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Car"
                   }
                 }
               }
             }
-          },
-          "404": {
-            "description": "Location not found"
-          },
-          "500": {
-            "description": "Error retrieving cars"
           }
         }
       }
@@ -323,6 +286,45 @@
         }
       }
     },
+<<<<<<< Updated upstream
+=======
+    "/api/payments/booking/{bookingId}": {
+      "get": {
+        "summary": "Get payments by booking ID",
+        "tags": ["Payment"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of payments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Payment"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+>>>>>>> Stashed changes
     "/api/payments/process/{paymentId}": {
       "put": {
         "summary": "Process a payment",
@@ -751,7 +753,7 @@
           },
           "status": {
             "type": "string",
-            "example": "pending"
+            "example": "active"
           }
         }
       },
@@ -762,45 +764,21 @@
             "type": "integer",
             "example": 1
           },
-          "make": {
-            "type": "string",
-            "example": "Toyota"
-          },
           "model": {
             "type": "string",
-            "example": "Corolla"
+            "example": "Toyota Corolla"
           },
           "pricePerDay": {
             "type": "number",
             "example": 50
           },
-          "color": {
-            "type": "string",
-            "example": "Red"
-          },
           "year": {
             "type": "integer",
             "example": 2004
           },
-          "mileage": {
+          "location_id": {
             "type": "integer",
-            "example": 160000
-          },
-          "transmissionType": {
-            "type": "string",
-            "example": "Automatic"
-          },
-          "fuelType": {
-            "type": "string",
-            "example": "Petrol"
-          },
-          "numberOfSeats": {
-            "type": "integer",
-            "example": 5
-          },
-          "licensePlate": {
-            "type": "string",
-            "example": "DEF532"
+            "example": 1
           }
         }
       },
@@ -832,19 +810,18 @@
       "Location": {
         "type": "object",
         "properties": {
-          "longitude": {
-            "type": "number",
-            "example": 0.0
-          },
-          "latitude": {
-            "type": "number",
-            "example": 0.0
-          },
-          "carId": {
+          "id": {
             "type": "integer",
-            "example": 1
+            "format": "int64"
+          },
+          "ip_address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
           }
         },
+<<<<<<< Updated upstream
         "required": ["longitude", "latitude", "carId"]
       },
       "ImgCar": {
@@ -863,6 +840,9 @@
           }
         },
         "required": ["car_id", "imageUrl"]
+=======
+        "required": ["ip_address", "city"]
+>>>>>>> Stashed changes
       }
     },
     "securitySchemes": {

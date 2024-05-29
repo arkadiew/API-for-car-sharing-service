@@ -18,8 +18,21 @@ exports.create = async (req, res) => {
     }
 };
 
-
-
+exports.findByBookingId = async (req, res) => {
+    const { bookingId } = req.params;
+    try {
+        const payments = await Payment.findAll({
+            where: { bookingId },
+            include: [Booking]
+        });
+        if (!payments) {
+            return res.status(404).json({ message: 'Payments not found' });
+        }
+        res.status(200).json(payments);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
 
 exports.processPayment = async (req, res) => {
     const { paymentId } = req.params;
@@ -32,7 +45,7 @@ exports.processPayment = async (req, res) => {
         }
 
 
-        payment.status = 'paid';
+        payment.status = 'completed';
         payment.transactionId = transactionId;
         await payment.save();
 
