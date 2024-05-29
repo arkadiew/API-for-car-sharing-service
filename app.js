@@ -7,11 +7,13 @@ const Car = require('./models/car');
 const User = require('./models/User');
 const Payment = require('./models/payment');
 const Location = require('./models/location');
+const img_car = require('./models/img_car');
 const authRoutes = require('./routes/authRoutes');
 const carRoutes = require('./routes/carRoutes');
 const bookingRoutes = require('./routes/bookingRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
 const locationRoutes = require('./routes/locationRoutes');
+const ImgCarRoutes = require('./routes/ImgCarRoutes');
 const app = express();
 
 app.use(bodyParser.json());
@@ -22,7 +24,7 @@ app.use('/api/cars', carRoutes);
 app.use('/api/bookings', bookingRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/loc', locationRoutes);
-
+app.use('/api', ImgCarRoutes);
 Booking.sequelize.sync().then(() => {
   console.log('Database connected and synchronized');
 });
@@ -37,6 +39,9 @@ Payment.sequelize.sync().then(() => {
 });
 
 Location.sequelize.sync().then(() => {
+  console.log('Database connected and synchronized');
+});
+img_car.sequelize.sync().then(() => {
   console.log('Database connected and synchronized');
 });
 module.exports = app;

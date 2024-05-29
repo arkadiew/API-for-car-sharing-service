@@ -112,7 +112,7 @@
         }
       }
     },
-    "/api/cars/car": {
+    "/api/cars": {
       "get": {
         "summary": "Get all cars",
         "tags": ["Car"],
@@ -296,8 +296,7 @@
           }
         }
       }
-    }
-,
+    },
     "/api/payments": {
       "post": {
         "summary": "Create a new payment",
@@ -324,7 +323,6 @@
         }
       }
     },
-
     "/api/payments/process/{paymentId}": {
       "put": {
         "summary": "Process a payment",
@@ -520,6 +518,174 @@
           }
         }
       }
+    },
+    "/api/imgcars": {
+      "post": {
+        "summary": "Create a new image car",
+        "tags": ["ImgCar"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImgCar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image car created successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retrieve all image cars",
+        "tags": ["ImgCar"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of image cars",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ImgCar"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/imgcars/{img_id}": {
+      "get": {
+        "summary": "Retrieve an image car by ID",
+        "tags": ["ImgCar"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "img_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the image car to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An image car object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImgCar"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Image car not found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Update an image car by ID",
+        "tags": ["ImgCar"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "img_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the image car to update"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImgCar"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Image car updated successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Image car not found"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an image car by ID",
+        "tags": ["ImgCar"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "img_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the image car to delete"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Image car deleted successfully"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Image car not found"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -680,6 +846,23 @@
           }
         },
         "required": ["longitude", "latitude", "carId"]
+      },
+      "ImgCar": {
+        "type": "object",
+        "properties": {
+          "car_id": {
+            "type": "string",
+            "description": "Image car ID",
+            "example": 1
+          },
+          
+          "imageUrl": {
+            "type": "string",
+            "description": "URL of the car image",
+            "example": "img.png"
+          }
+        },
+        "required": ["car_id", "imageUrl"]
       }
     },
     "securitySchemes": {
@@ -691,5 +874,3 @@
     }
   }
 }
-
-  
