@@ -8,8 +8,8 @@ const Booking = sequelize.define('Booking', {
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
     status: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
 
 module.exports = Booking;

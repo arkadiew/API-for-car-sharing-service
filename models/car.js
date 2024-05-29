@@ -8,6 +8,7 @@ const Car = sequelize.define('Car', {
     year: DataTypes.INTEGER,
     pricePerDay: DataTypes.FLOAT,
     color: DataTypes.STRING,
+    location_id: DataTypes.INTEGER,
     mileage: DataTypes.INTEGER,
     transmission_type: DataTypes.STRING,
     fuel_type: DataTypes.STRING,

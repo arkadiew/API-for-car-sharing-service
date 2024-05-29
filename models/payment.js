@@ -7,8 +7,8 @@ const Payment = sequelize.define('Payment', {
     amount: DataTypes.FLOAT,
     status: DataTypes.STRING,
     transactionId: DataTypes.STRING,
-    createdAt: DataTypes.DATE,
-    updatedAt: DataTypes.DATE,
+    createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });
 
 module.exports = Payment;

@@ -58,7 +58,36 @@ const seed = async () => {
     ];
 
     const createdUsers = await Promise.all(users.map(user => User.create(user)));
+// Seed Locations
+const locations = [
+    {
+       
+        latitude: 34.0522,
+        longitude: -118.2437,
+    },
+    {
+       
+        latitude: 40.7128,
+        longitude: -74.0060,
+    },
+    {
+       
+        latitude: 37.7749,
+        longitude: -122.4194,
+    },
+    {
+       
+        latitude: 51.5074,
+        longitude: -0.1278,
+    },
+    {
+      
+        latitude: 48.8566,
+        longitude: 2.3522,
+    }
+];
 
+const createdLocations = await Promise.all(locations.map(location => Location.create(location)));
     // Seed Cars
     const cars = [
         {
@@ -67,6 +96,7 @@ const seed = async () => {
             year: 2020,
             pricePerDay: 50,
             color: 'Blue',
+            location_id: createdLocations[1].id,
             mileage: 20000,
             transmission_type: 'Automatic',
             fuel_type: 'Petrol',
@@ -79,6 +109,7 @@ const seed = async () => {
             year: 2019,
             pricePerDay: 45,
             color: 'Red',
+            location_id: createdLocations[0].id,
             mileage: 15000,
             transmission_type: 'Manual',
             fuel_type: 'Diesel',
@@ -91,6 +122,7 @@ const seed = async () => {
             year: 2018,
             pricePerDay: 40,
             color: 'Black',
+            location_id: createdLocations[2].id,
             mileage: 30000,
             transmission_type: 'Automatic',
             fuel_type: 'Petrol',
@@ -103,6 +135,7 @@ const seed = async () => {
             year: 2021,
             pricePerDay: 55,
             color: 'White',
+            location_id: createdLocations[3].id,
             mileage: 10000,
             transmission_type: 'Automatic',
             fuel_type: 'Petrol',
@@ -115,6 +148,7 @@ const seed = async () => {
             year: 2022,
             pricePerDay: 80,
             color: 'Gray',
+            location_id: createdLocations[4].id,
             mileage: 5000,
             transmission_type: 'Automatic',
             fuel_type: 'Petrol',
@@ -122,7 +156,6 @@ const seed = async () => {
             license_plate: 'JKL345',
         }
     ];
-
     const createdCars = await Promise.all(cars.map(car => Car.create(car)));
 
     // Seed Bookings
@@ -202,36 +235,8 @@ const seed = async () => {
 
     await Promise.all(payments.map(payment => Payment.create(payment)));
 
-    // Seed Locations
-    const locations = [
-        {
-            car_id: createdCars[0].car_id,
-            latitude: 34.0522,
-            longitude: -118.2437,
-        },
-        {
-            car_id: createdCars[1].car_id,
-            latitude: 40.7128,
-            longitude: -74.0060,
-        },
-        {
-            car_id: createdCars[2].car_id,
-            latitude: 37.7749,
-            longitude: -122.4194,
-        },
-        {
-            car_id: createdCars[3].car_id,
-            latitude: 51.5074,
-            longitude: -0.1278,
-        },
-        {
-            car_id: createdCars[4].car_id,
-            latitude: 48.8566,
-            longitude: 2.3522,
-        }
-    ];
+    
 
-    await Promise.all(locations.map(location => Location.create(location)));
 
     // Seed ImgCar
     const imgCars = [

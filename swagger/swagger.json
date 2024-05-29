@@ -222,44 +222,82 @@
         }
       }
     },
-    "/api/cars/by-ip/{ip}": {
+    "/api/cars/locations/{longitude}/{latitude}/cars": {
       "get": {
+        "summary": "Find available cars by location",
         "tags": ["Car"],
-        "summary": "Find available cars and city by IP address",
-        "description": "Returns a list of available cars and the city for the given IP address",
-        "parameters": [
-          {
-            "name": "ip",
-            "in": "path",
-            "description": "IP address to look up",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "security": [
           {
             "bearerAuth": []
           }
         ],
+        "description": "Retrieve available cars based on longitude and latitude",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "longitude",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Longitude of the location"
+          },
+          {
+            "in": "path",
+            "name": "latitude",
+            "required": true,
+            "schema": {
+              "type": "number"
+            },
+            "description": "Latitude of the location"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "List of available cars",
+            "description": "A list of available cars",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Car"
+                  "type": "object",
+                  "properties": {
+                    "longitude": {
+                      "type": "number"
+                    },
+                    "latitude": {
+                      "type": "number"
+                    },
+                    "cars": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "model": {
+                            "type": "string"
+                          },
+                          "brand": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
+          },
+          "404": {
+            "description": "Location not found"
+          },
+          "500": {
+            "description": "Error retrieving cars"
           }
         }
       }
-    },
+    }
+,
     "/api/payments": {
       "post": {
         "summary": "Create a new payment",
@@ -286,42 +324,7 @@
         }
       }
     },
-    "/api/payments/booking/{bookingId}": {
-      "get": {
-        "summary": "Get payments by booking ID",
-        "tags": ["Payment"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "name": "bookingId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of payments",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Payment"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+
     "/api/payments/process/{paymentId}": {
       "put": {
         "summary": "Process a payment",
@@ -530,11 +533,11 @@
           },
           "name": {
             "type": "string",
-            "example": "Johne Doe"
+            "example": "John Doe"
           },
           "email": {
             "type": "string",
-            "example": "johne.doe@example.com"
+            "example": "john.doe@example.com"
           },
           "password": {
             "type": "string",
@@ -593,15 +596,13 @@
             "type": "integer",
             "example": 1
           },
-          
           "make": {
             "type": "string",
-            "example": "Toyota "
+            "example": "Toyota"
           },
-
           "model": {
             "type": "string",
-            "example": " Corolla"
+            "example": "Corolla"
           },
           "pricePerDay": {
             "type": "number",
@@ -609,7 +610,7 @@
           },
           "color": {
             "type": "string",
-            "example": "Red "
+            "example": "Red"
           },
           "year": {
             "type": "integer",
@@ -618,20 +619,20 @@
           "mileage": {
             "type": "integer",
             "example": 160000
-          },  
-          "transmission_type": {
-            "type": "string",
-            "example": "Automatic "
-          }, 
-          "fuel_type": {
-            "type": "string",
-            "example": "Petrol "
           },
-          "number_of_seats": {
+          "transmissionType": {
+            "type": "string",
+            "example": "Automatic"
+          },
+          "fuelType": {
+            "type": "string",
+            "example": "Petrol"
+          },
+          "numberOfSeats": {
             "type": "integer",
             "example": 5
-          },	
-          "license_plate": {
+          },
+          "licensePlate": {
             "type": "string",
             "example": "DEF532"
           }
@@ -666,18 +667,19 @@
         "type": "object",
         "properties": {
           "longitude": {
-            "type": "float",
-            "example": "0.0"
+            "type": "number",
+            "example": 0.0
           },
           "latitude": {
-            "type": "float",
-            "example": "0.0"
-            
-          },  "car_id": {
-            "type": "integer"
+            "type": "number",
+            "example": 0.0
+          },
+          "carId": {
+            "type": "integer",
+            "example": 1
           }
         },
-        "required": ["longitude", "latitude", "car_id"]
+        "required": ["longitude", "latitude", "carId"]
       }
     },
     "securitySchemes": {
@@ -689,3 +691,5 @@
     }
   }
 }
+
+  
