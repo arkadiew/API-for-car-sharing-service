@@ -1,5 +1,6 @@
 
 const Location = require('../models/location');
+const Car = require('../models/car');
 
 
 exports.findAll = async (req, res) => {
@@ -34,17 +35,3 @@ exports.update = async (req, res) => {
     }
 };
 
-
-exports.delete = async (req, res) => {
-    const { id } = req.params;
-    try {
-      const car = await Location.findByPk(id);
-      if (!car) {
-        return res.status(404).json({ message: 'Location not found' });
-      }
-      await car.destroy();
-      res.status(204).send();
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-    }
-};

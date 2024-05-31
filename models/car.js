@@ -14,6 +14,7 @@ const Car = sequelize.define('Car', {
     fuel_type: DataTypes.STRING,
     number_of_seats: DataTypes.INTEGER,
     license_plate: DataTypes.STRING,
+    status: { type: DataTypes.STRING, allowNull: false, defaultValue: "ready" },
 });
 
 module.exports = Car;

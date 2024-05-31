@@ -93,13 +93,14 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const { id } = req.params;
     try {
-      const car = await Car.findByPk(id);
-      if (!car) {
-        return res.status(404).json({ message: 'Car not found' });
-      }
-      await car.destroy();
-      res.status(204).send();
+        const car = await Car.findByPk(id);
+        if (!car) {
+            return res.status(404).json({ message: 'Car not found' });
+        }
+        car.status = 'repair';
+        await car.save();
+        res.status(200).json(car);
     } catch (error) {
-      res.status(400).json({ message: error.message });
+        res.status(400).json({ message: error.message });
     }
 };

@@ -486,37 +486,6 @@
             "description": "Location not found"
           }
         }
-      },
-      "delete": {
-        "summary": "Delete location by ID",
-        "tags": ["Locations"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            },
-            "description": "ID of the location to delete"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Location deleted"
-          },
-          "400": {
-            "description": "Bad request"
-          },
-          "404": {
-            "description": "Location not found"
-          }
-        }
       }
     },
     "/api/imgcars": {
