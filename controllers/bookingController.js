@@ -2,10 +2,15 @@
 const Booking = require('../models/booking');
 const Car = require('../models/car');
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 exports.create = async (req, res) => {
     try {
-        const { carId, userId, startDate, endDate } = req.body;
+        const { carId, startDate, endDate } = req.body;
+        const token =  req.headers["x-access-token"];
+
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET,); 
+        const userId = decodedToken.userId;
 
         const car = await Car.findByPk(carId);
         if (!car) {

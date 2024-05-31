@@ -1,6 +1,6 @@
 const { ImgCar } = require('../models');
 
-// Create a new ImgCar
+
 exports.createImgCar = async (req, res) => {
     try {
         const imgCar = await ImgCar.create(req.body);

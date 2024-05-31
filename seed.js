@@ -205,31 +205,31 @@ const createdLocations = await Promise.all(locations.map(location => Location.cr
             bookingId: createdBookings[0].id,
             amount: 350,
             status: 'paid',
-            transactionId: 'TX123456',
+          
         },
         {
             bookingId: createdBookings[1].id,
             amount: 225,
             status: 'pending',
-            transactionId: 'TX654321',
+           
         },
         {
             bookingId: createdBookings[2].id,
             amount: 120,
             status: 'paid',
-            transactionId: 'TX789012',
+          
         },
         {
             bookingId: createdBookings[3].id,
             amount: 550,
             status: 'paid',
-            transactionId: 'TX345678',
+         
         },
         {
             bookingId: createdBookings[4].id,
             amount: 640,
             status: 'pending',
-            transactionId: 'TX901234',
+          
         }
     ];
 

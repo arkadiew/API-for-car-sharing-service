@@ -7,7 +7,7 @@ const Booking = sequelize.define('Booking', {
     carId: { type: DataTypes.INTEGER, allowNull: false },
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,
-    status: DataTypes.STRING,
+    status: { type: DataTypes.STRING, allowNull: false, defaultValue: "pending" },
     createdAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: DataTypes.NOW },
 });

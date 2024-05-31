@@ -1,14 +1,24 @@
 const Booking = require('../models/booking');
 const Payment= require('../models/payment');
-
+const jwt = require('jsonwebtoken');
 
 exports.create = async (req, res) => {
     try {
         const { bookingId, amount } = req.body;
+        const token =  req.headers["x-access-token"];
+        const decodedToken = jwt.verify(token, process.env.JWT_SECRET,); 
+        const userId = decodedToken.userId;
+        
+        if (!userId) {
+            return res.status(401).json({ message: 'Unauthorized' });
+        }
 
         const booking = await Booking.findByPk(bookingId);
         if (!booking) {
             return res.status(404).json({ message: 'Booking not found' });
+        }
+        if (booking.userId !== userId) {
+            return res.status(403).json({ message: 'Unauthorized to perform this action' });
         }
 
         const payment = await Payment.create({ bookingId, amount });

@@ -662,10 +662,7 @@
       "User": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
+        
           "name": {
             "type": "string",
             "example": "John Doe"
@@ -696,17 +693,10 @@
       "Booking": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
+         
           "carId": {
             "type": "integer",
             "example": 2
-          },
-          "userId": {
-            "type": "integer",
-            "example": 3
           },
           "startDate": {
             "type": "string",
@@ -727,10 +717,7 @@
       "Car": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
+         
           "make": {
             "type": "string",
             "example": "Toyota"
@@ -776,10 +763,7 @@
       "Payment": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "integer",
-            "example": 1
-          },
+
           "bookingId": {
             "type": "integer",
             "example": 2
