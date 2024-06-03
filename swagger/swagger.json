@@ -734,6 +734,10 @@
             "type": "string",
             "example": "Red"
           },
+          "location_id": {
+            "type": "integer",
+            "example": 2
+          },
           "year": {
             "type": "integer",
             "example": 2004
@@ -742,19 +746,19 @@
             "type": "integer",
             "example": 160000
           },
-          "transmissionType": {
+          "transmission_type": {
             "type": "string",
             "example": "Automatic"
           },
-          "fuelType": {
+          "fuel_type": {
             "type": "string",
             "example": "Petrol"
           },
-          "numberOfSeats": {
+          "number_of_seats": {
             "type": "integer",
             "example": 5
           },
-          "licensePlate": {
+          "license_plate": {
             "type": "string",
             "example": "DEF532"
           }
