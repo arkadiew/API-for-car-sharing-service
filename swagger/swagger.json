@@ -813,13 +813,13 @@
             "example": 1
           },
           
-          "imageUrl": {
+          "img_name": {
             "type": "string",
             "description": "URL of the car image",
             "example": "img.png"
           }
         },
-        "required": ["car_id", "imageUrl"]
+        "required": ["car_id", "img_name"]
       }
     },
     "securitySchemes": {
