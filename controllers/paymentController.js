@@ -43,7 +43,7 @@ exports.processPayment = async (req, res) => {
 
 
         payment.status = 'paid';
-        payment.transactionId = transactionId;
+      
         await payment.save();
 
         res.status(200).json(payment);
@@ -65,7 +65,7 @@ exports.cancel = async (req, res) => {
 
 
         payment.status = 'cancelled';
-        payment.transactionId = transactionId;
+       
         await payment.save();
 
         res.status(200).json(payment);
