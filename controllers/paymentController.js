@@ -33,7 +33,7 @@ exports.create = async (req, res) => {
 
 exports.processPayment = async (req, res) => {
     const { paymentId } = req.params;
-    const { transactionId } = req.body;
+  
 
     try {
         const payment = await Payment.findByPk(paymentId);
@@ -55,7 +55,7 @@ exports.processPayment = async (req, res) => {
 
 exports.cancel = async (req, res) => {
     const { paymentcancelId } = req.params;
-    const { transactionId } = req.body;
+
 
     try {
         const payment = await Payment.findByPk(paymentcancelId);
