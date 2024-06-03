@@ -770,7 +770,7 @@
 
           "bookingId": {
             "type": "integer",
-            "example": 2
+            "example": 1
           },
           "amount": {
             "type": "number",
